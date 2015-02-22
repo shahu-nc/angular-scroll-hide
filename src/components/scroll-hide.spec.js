@@ -22,14 +22,24 @@ describe('controllers', function(){
   });
 
   describe('on window scroll', function() {
+    
+    describe('scrolling within passed scroll limit', function() {
+      beforeEach(function() {
+        $$window[0].pageYOffset = 50;
+        $$window.triggerHandler('scroll');
+      });
 
-    beforeEach(function() {
-      $$window[0].pageYOffset = 50;
-      $$window.triggerHandler('scroll');
-    });
+      it('should transform the y-position by the scroll amount', function() {
+        expect($scrollHideEl.css('transform')).toEqual('translateY(-50px)');
+      });
 
-    it('should transform the y-position by the scroll amount', function() {
-      expect($scrollHideEl.css('transform')).toEqual('translateY(-50px)');
+      describe('scrolling back up', function() {
+        it('should set translateY to 0', function() {
+          $$window[0].pageYOffset = 49;
+          $$window.triggerHandler('scroll');
+          expect($scrollHideEl.css('transform')).toEqual('translateY(0px)');
+        });
+      });
     });
 
     describe('scrolling past passed scroll limit', function() {
@@ -40,12 +50,5 @@ describe('controllers', function(){
       });
     });
 
-    describe('scrolling back up', function() {
-      it('should set translateY to 0', function() {
-        $$window[0].pageYOffset = 49;
-        $$window.triggerHandler('scroll');
-        expect($scrollHideEl.css('transform')).toEqual('translateY(0px)');
-      });
-    });
   });
 });

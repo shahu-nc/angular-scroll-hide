@@ -18,9 +18,10 @@ angular.module('scrollHide')
 
         if (pixelsToScroll > currentYPosition) {
           $element.css({transform: translateY(0)});
-        }
-        else if (pixelsToScroll >= scrollLimit) {
+        } else if (pixelsToScroll >= scrollLimit) {
           $element.css({transform: translateY(pixelsToScroll)});
+        } else {
+          $element.css({transform: translateY(scrollLimit)});
         }
       });
     }
