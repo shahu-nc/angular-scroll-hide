@@ -39,5 +39,13 @@ describe('controllers', function(){
         expect($scrollHideEl.css('transform')).toEqual('translateY(-50px)');
       });
     });
+
+    describe('scrolling back up', function() {
+      it('should set translateY to 0', function() {
+        $$window[0].pageYOffset = 49;
+        $$window.triggerHandler('scroll');
+        expect($scrollHideEl.css('transform')).toEqual('translateY(0px)');
+      });
+    });
   });
 });
