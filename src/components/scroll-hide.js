@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('scrollHide')
+angular.module('scrollHide', [])
 .directive('scrollHide', function($window) {
   return {
     link: function($scope, $element, attrs) {
