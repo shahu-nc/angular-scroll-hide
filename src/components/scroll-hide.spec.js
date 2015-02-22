@@ -34,10 +34,22 @@ describe('controllers', function(){
       });
 
       describe('scrolling back up', function() {
-        it('should set translateY to 0', function() {
+
+        beforeEach(function() {
           $$window[0].pageYOffset = 49;
           $$window.triggerHandler('scroll');
+        });
+
+        it('should set translateY to 0', function() {
           expect($scrollHideEl.css('transform')).toEqual('translateY(0px)');
+        });
+
+        describe('continue scrolling up', function() {
+          it('should maintain the y position at 0', function() {
+            $$window[0].pageYOffset = 48;
+            $$window.triggerHandler('scroll');
+            expect($scrollHideEl.css('transform')).toEqual('translateY(0px)');
+          });
         });
       });
     });
