@@ -40,6 +40,8 @@ describe('controllers', function(){
 
       it('should transform the y-position by the scroll amount', function() {
         expect($scrollHideEl.css('transform')).toEqual('translateY(-50px)');
+        expect($scrollHideEl.css('webkitTransform')).toEqual('translateY(-50px)');
+        expect($scrollHideEl.css('msTransform')).toEqual('translateY(-50px)');
       });
 
       describe('scrolling back up', function() {
@@ -51,6 +53,8 @@ describe('controllers', function(){
 
         it('should set translateY to 0', function() {
           expect($scrollHideEl.css('transform')).toEqual('translateY(0px)');
+          expect($scrollHideEl.css('webkitTransform')).toEqual('translateY(0px)');
+          expect($scrollHideEl.css('msTransform')).toEqual('translateY(0px)');
         });
 
         describe('continue scrolling up', function() {
@@ -58,6 +62,8 @@ describe('controllers', function(){
             $scrollingEl[0].scrollTop = 48;
             $scrollingEl.triggerHandler('scroll');
             expect($scrollHideEl.css('transform')).toEqual('translateY(0px)');
+            expect($scrollHideEl.css('webkitTransform')).toEqual('translateY(0px)');
+            expect($scrollHideEl.css('msTransform')).toEqual('translateY(0px)');
           });
         });
       });
@@ -68,6 +74,8 @@ describe('controllers', function(){
         $scrollingEl[0].scrollTop = 51;
         $scrollingEl.triggerHandler('scroll');
         expect($scrollHideEl.css('transform')).toEqual('translateY(-50px)');
+        expect($scrollHideEl.css('webkitTransform')).toEqual('translateY(-50px)');
+        expect($scrollHideEl.css('msTransform')).toEqual('translateY(-50px)');
       });
     });
 

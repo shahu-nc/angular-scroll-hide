@@ -21,16 +21,24 @@ angular.module('scrollHide', [])
         return isScrollingUp;
       };
 
+      var addTransform = function(transformValue) {
+        $element.css({
+          transform: transformValue,
+          webkitTransform: transformValue,
+          msTransform: transformValue
+        });
+      };
+
       $scrollingEl.bind('scroll', function(e) {
         var scrollingYPosition = scrollingEl.scrollTop;
         var pixelsToScroll = scrollingYPosition * -1;
 
         if (scrollingUp(scrollingYPosition)) {
-          $element.css({transform: translateY(0)});
+          addTransform(translateY(0));
         } else if (pixelsToScroll >= scrollLimit) {
-          $element.css({transform: translateY(pixelsToScroll)});
+          addTransform(translateY(pixelsToScroll));
         } else {
-          $element.css({transform: translateY(scrollLimit)});
+          addTransform(translateY(scrollLimit));
         }
       });
     }
