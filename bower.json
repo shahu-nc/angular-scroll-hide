@@ -1,6 +1,6 @@
 {
   "name": "scrollHide",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "main": "src/components/scroll-hide.js",
   "keywords": [
     "angular",

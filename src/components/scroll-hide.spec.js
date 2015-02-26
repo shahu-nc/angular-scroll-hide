@@ -1,11 +1,12 @@
 'use strict';
 
 describe('controllers', function(){
-  var $scrollHideEl, $scrollingEl, $document;
+  var $scrollHideEl, $scrollingEl, $document, $rootScope;
 
   beforeEach(module('scrollHide'));
 
-  beforeEach(inject(function($rootScope, $compile, _$document_) {
+  beforeEach(inject(function(_$rootScope_, $compile, _$document_) {
+    $rootScope = _$rootScope_;
     $document = _$document_;
     var $scope = $rootScope.$new();
     var container = $document[0].createElement('div');
@@ -35,7 +36,7 @@ describe('controllers', function(){
     describe('scrolling within passed scroll limit', function() {
       beforeEach(function() {
         $scrollingEl[0].scrollTop = 50;
-        $scrollingEl.triggerHandler('scroll', {target: {scrolTop: 50}});
+        $scrollingEl.triggerHandler('scroll');
       });
 
       it('should transform the y-position by the scroll amount', function() {
@@ -79,5 +80,16 @@ describe('controllers', function(){
       });
     });
 
+  });
+
+  describe('on destroy', function() {
+    it('should not transform the element', function() {
+      $rootScope.$broadcast('$destroy');
+      $scrollingEl[0].scrollTop = 50;
+      $scrollingEl.triggerHandler('scroll');
+      expect($scrollHideEl.css('transform')).not.toEqual('translateY(-50px)');
+      expect($scrollHideEl.css('webkitTransform')).not.toEqual('translateY(-50px)');
+      expect($scrollHideEl.css('msTransform')).not.toEqual('translateY(-50px)');
+    });
   });
 });

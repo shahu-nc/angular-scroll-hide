@@ -29,7 +29,7 @@ angular.module('scrollHide', [])
         });
       };
 
-      $scrollingEl.bind('scroll', function(e) {
+      var updateScrolling = function() {
         var scrollingYPosition = scrollingEl.scrollTop;
         var pixelsToScroll = scrollingYPosition * -1;
 
@@ -40,6 +40,12 @@ angular.module('scrollHide', [])
         } else {
           addTransform(translateY(scrollLimit));
         }
+      }
+
+      $scrollingEl.bind('scroll', updateScrolling);
+
+      $scope.$on('$destroy', function() {
+        $scrollingEl.unbind('scroll', updateScrolling);
       });
     }
   }
