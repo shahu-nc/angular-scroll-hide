@@ -18,8 +18,15 @@
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-    <div style="height: 1000px;">
-      <div scroll-hide="50" style="position: fixed; top: 0;">Hello World</div>
+    <div id="scrolling" style="height: 500px; overflow: scroll">
+      <div
+        scroll-hide="50"
+        scrolling-element="#scrolling"
+        style="position: fixed; top: 0;"
+      >
+        Hello World
+      </div>
+      <div style="height: 1000px">Good Bye</div>
     </div>
     
 
