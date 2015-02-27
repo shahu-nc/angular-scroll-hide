@@ -11,6 +11,7 @@ angular.module('scrollHide', [])
       var currentScrollingYPosition = 0;
       
       var translateY = function(pixels) {
+        pixels = pixels <= 0 ? pixels : 0;
         currentYPosition = pixels;
         return 'translateY(' + pixels + 'px)';
       };
